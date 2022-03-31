@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxs.plat.system.menu.dao.MenuMapper">
+  <!--自定义方法-->
+
+  <select id="getMenuByIds" resultType="java.util.Map">
+    select * from plat_menu where isUse = 1
+  </select>
+
+  <!--下方是自动生成的方法-->
+  <resultMap id="BaseResultMap" type="com.xxs.plat.system.menu.model.Menu">
+    <id column="plat_menu_id" jdbcType="INTEGER" property="id" />
+    <result column="plat_menu_parentId" jdbcType="INTEGER" property="parentId" />
+    <result column="plat_menu_name" jdbcType="VARCHAR" property="name" />
+    <result column="plat_menu_component" jdbcType="VARCHAR" property="component" />
+    <result column="plat_menu_icon" jdbcType="VARCHAR" property="icon" />
+    <result column="plat_menu_path" jdbcType="VARCHAR" property="path" />
+    <result column="plat_menu_redirect" jdbcType="VARCHAR" property="redirect" />
+    <result column="plat_menu_title" jdbcType="VARCHAR" property="title" />
+    <result column="plat_menu_hidden" jdbcType="BOOLEAN" property="hidden" />
+    <result column="plat_menu_needCache" jdbcType="BOOLEAN" property="needCache" />
+    <result column="plat_menu_props" jdbcType="BOOLEAN" property="props" />
+    <result column="plat_menu_notNeedAuth" jdbcType="BOOLEAN" property="notNeedAuth" />
+    <result column="plat_menu_remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from plat_menu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xxs.plat.system.menu.model.Menu" useGeneratedKeys="true">
+    insert into plat_menu (parentId, `name`, component,
+      icon, `path`, redirect,
+      title, hidden, needCache,
+      props, notNeedAuth, remark
+      )
+    values (#{parentId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{component,jdbcType=VARCHAR},
+      #{icon,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, #{redirect,jdbcType=VARCHAR},
+      #{title,jdbcType=VARCHAR}, #{hidden,jdbcType=BOOLEAN}, #{needCache,jdbcType=BOOLEAN},
+      #{props,jdbcType=BOOLEAN}, #{notNeedAuth,jdbcType=BOOLEAN}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xxs.plat.system.menu.model.Menu" useGeneratedKeys="true">
+    insert into plat_menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="parentId != null">
+        parentId,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="component != null">
+        component,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="path != null">
+        `path`,
+      </if>
+      <if test="redirect != null">
+        redirect,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="hidden != null">
+        hidden,
+      </if>
+      <if test="needCache != null">
+        needCache,
+      </if>
+      <if test="props != null">
+        props,
+      </if>
+      <if test="notNeedAuth != null">
+        notNeedAuth,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="component != null">
+        #{component,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="redirect != null">
+        #{redirect,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="hidden != null">
+        #{hidden,jdbcType=BOOLEAN},
+      </if>
+      <if test="needCache != null">
+        #{needCache,jdbcType=BOOLEAN},
+      </if>
+      <if test="props != null">
+        #{props,jdbcType=BOOLEAN},
+      </if>
+      <if test="notNeedAuth != null">
+        #{notNeedAuth,jdbcType=BOOLEAN},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xxs.plat.system.menu.model.Menu">
+    update plat_menu
+    <set>
+      <if test="parentId != null">
+        parentId = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="component != null">
+        component = #{component,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        `path` = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="redirect != null">
+        redirect = #{redirect,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="hidden != null">
+        hidden = #{hidden,jdbcType=BOOLEAN},
+      </if>
+      <if test="needCache != null">
+        needCache = #{needCache,jdbcType=BOOLEAN},
+      </if>
+      <if test="props != null">
+        props = #{props,jdbcType=BOOLEAN},
+      </if>
+      <if test="notNeedAuth != null">
+        notNeedAuth = #{notNeedAuth,jdbcType=BOOLEAN},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xxs.plat.system.menu.model.Menu">
+    update plat_menu
+    set parentId = #{parentId,jdbcType=INTEGER},
+      `name` = #{name,jdbcType=VARCHAR},
+      component = #{component,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      `path` = #{path,jdbcType=VARCHAR},
+      redirect = #{redirect,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      hidden = #{hidden,jdbcType=BOOLEAN},
+      needCache = #{needCache,jdbcType=BOOLEAN},
+      props = #{props,jdbcType=BOOLEAN},
+      notNeedAuth = #{notNeedAuth,jdbcType=BOOLEAN},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

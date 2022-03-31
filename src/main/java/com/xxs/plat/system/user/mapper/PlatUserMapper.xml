@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxs.plat.system.user.dao.PlatUserMapper">
+    <resultMap id="BaseResultMap" type="com.xxs.plat.system.user.model.PlatUser">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="userName" jdbcType="VARCHAR" property="userName"/>
+        <result column="loginName" jdbcType="VARCHAR" property="loginName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="role" jdbcType="INTEGER" property="role"/>
+        <result column="isUse" jdbcType="BOOLEAN" property="isUse"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="tel" jdbcType="VARCHAR" property="tel"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="createTime" jdbcType="VARCHAR" property="createTime"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+    </resultMap>
+    <select id="selectByLoginName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select id, userName, loginName, `password`, `role`, isUse, avatar, address, tel, email, createTime, remark
+        from plat_user
+        where loginName = #{loginName,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select id, userName, loginName, `password`, `role`, isUse, avatar, address, tel, email, createTime, remark
+        from plat_user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectByUser" resultType="com.xxs.plat.system.user.model.PlatUser">
+        select * from plat_user where isUse =1 and loginName = #{loginName} and password = #{password}
+    </select>
+    <select id="list" resultType="java.util.Map">
+        select * from plat_user
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from plat_user
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xxs.plat.system.user.model.PlatUser" useGeneratedKeys="true">
+        insert into plat_user (userName, loginName, `password`,
+                               `role`, isUse, avatar,
+                               address, tel, email,
+                               createTime, remark)
+        values (#{userName,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+                #{role,jdbcType=INTEGER}, #{isUse,jdbcType=BOOLEAN}, #{avatar,jdbcType=VARCHAR},
+                #{address,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+                #{createTime,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xxs.plat.system.user.model.PlatUser" useGeneratedKeys="true">
+        insert into plat_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userName != null">
+                userName,
+            </if>
+            <if test="loginName != null">
+                loginName,
+            </if>
+            <if test="password != null">
+                `password`,
+            </if>
+            <if test="role != null">
+                `role`,
+            </if>
+            <if test="isUse != null">
+                isUse,
+            </if>
+            <if test="avatar != null">
+                avatar,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="tel != null">
+                tel,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="createTime != null">
+                createTime,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="loginName != null">
+                #{loginName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="role != null">
+                #{role,jdbcType=INTEGER},
+            </if>
+            <if test="isUse != null">
+                #{isUse,jdbcType=BOOLEAN},
+            </if>
+            <if test="avatar != null">
+                #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null">
+                #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.xxs.plat.system.user.model.PlatUser">
+        update plat_user
+        <set>
+            <if test="userName != null">
+                userName = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="loginName != null">
+                loginName = #{loginName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                `password` = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="role != null">
+                `role` = #{role,jdbcType=INTEGER},
+            </if>
+            <if test="isUse != null">
+                isUse = #{isUse,jdbcType=BOOLEAN},
+            </if>
+            <if test="avatar != null">
+                avatar = #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null">
+                tel = #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                createTime = #{createTime,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.xxs.plat.system.user.model.PlatUser">
+        update plat_user
+        set userName = #{userName,jdbcType=VARCHAR}, loginName = #{loginName,jdbcType=VARCHAR}, `password` = #{password,jdbcType=VARCHAR}, `role` = #{role,jdbcType=INTEGER},
+            isUse    = #{isUse,jdbcType=BOOLEAN}, avatar = #{avatar,jdbcType=VARCHAR}, address = #{address,jdbcType=VARCHAR}, tel = #{tel,jdbcType=VARCHAR},
+            email    = #{email,jdbcType=VARCHAR}, createTime = #{createTime,jdbcType=VARCHAR}, remark = #{remark,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

@@ -79,6 +79,7 @@
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.2.5</version>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -96,6 +97,23 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <!-- 指定resources插件处理哪个目录下的资源文件 -->
+                <directory>${basedir}/src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
 </project>

@@ -262,7 +262,8 @@ public class CommonUtil {
         return returnMap(map, status, info);
     }
     
-    public static boolean isNotEmptyString(String str) {
-        return !("".equals(str) || "null".equals(str));
+    public static boolean isNotEmptyString(Object str) {
+        return !("".equals(str + "") || "null".equals(str + ""));
     }
+    
 }
